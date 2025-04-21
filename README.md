@@ -1,5 +1,3 @@
-Sure — here’s your full clean, no-fancy, markdown-formatted `README.md` content you can directly copy and paste:
-
 ---
 
 # System Software Projects
