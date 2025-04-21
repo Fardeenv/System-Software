@@ -1,0 +1,71 @@
+begin
+    initialize SYMTAB to empty
+    initialize OPTAB with opcode mappings
+    initialize LOCCTR to 0
+    initialize forward reference table to empty
+
+    read first input line
+    if OPCODE = 'START' then
+        save OPERAND as starting address
+        initialize LOCCTR to starting address
+        write header record to output file
+        read next input line
+    else
+        initialize LOCCTR to 0
+    end (if START)
+
+    while OPCODE ≠ 'END' do
+        begin
+            if this is not a comment line then
+                begin
+                    if there is a symbol in the LABEL field then
+                        begin
+                            if LABEL is already in SYMTAB then
+                                set error flag (duplicate symbol)
+                            else
+                                insert (LABEL, LOCCTR) into SYMTAB
+                                if LABEL exists in forward reference table then
+                                    for each reference in forward reference table for LABEL
+                                        update text record with LOCCTR
+                                    remove LABEL from forward reference table
+                                end (if forward reference)
+                            end (if LABEL in SYMTAB)
+                        end (if LABEL)
+
+                    search OPTAB for OPCODE
+                    if found then
+                        begin
+                            if OPERAND is a symbol then
+                                if OPERAND is in SYMTAB then
+                                    use address of OPERAND
+                                else
+                                    insert OPERAND into forward reference table with current LOCCTR
+                                    use placeholder value (e.g., 0000)
+                                end (if OPERAND in SYMTAB)
+                            end (if OPERAND is symbol)
+                            add instruction length to LOCCTR
+                        end (if OPCODE found)
+                    else if OPCODE = 'WORD' then
+                        add 3 to LOCCTR
+                    else if OPCODE = 'RESW' then
+                        add 3 * #OPERAND to LOCCTR
+                    else if OPCODE = 'RESB' then
+                        add #OPERAND to LOCCTR
+                    else if OPCODE = 'BYTE' then
+                        calculate length of constant in bytes
+                        add length to LOCCTR
+                    else
+                        set error flag (invalid opcode)
+                    end (if OPCODE)
+                end (if not comment)
+
+            write processed line to intermediate file
+            read next input line
+        end (while OPCODE ≠ 'END')
+
+    if forward reference table is not empty then
+        set error flag (unresolved forward references)
+
+    write end record to output file
+    save (LOCCTR - starting address) as program length
+end

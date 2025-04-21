@@ -1,0 +1,18 @@
+START 1000
+COPY    START   1000
+FIRST   LDA     ALPHA
+        STA     BETA
+        LDCH    CHAR1
+        STCH    CHAR2
+ALPHA   WORD    5
+BETA    RESW    1
+CHAR1   BYTE    C'X'
+CHAR2   BYTE    X'1F'
+        LDA     =C'Hello'
+        STA     =X'4F'
+        RESW    2
+SECOND  ADD     ALPHA
+        SUB     BETA
+        MUL     CHAR1
+        DIV     CHAR2
+END
