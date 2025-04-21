@@ -1,5 +1,3 @@
----
-
 # System Software Projects
 
 This repository contains implementations of various system software components and programs related to assemblers, loaders, and linkers. Each project simulates a specific system software function, offering practical insights into low-level programming concepts.
@@ -82,7 +80,3 @@ Contributions are welcome! To contribute:
 
 Fardeen Vaddo  
 GitHub: [FardeenVaddo](https://github.com/FardeenVaddo)
-
----
-
-You can copy-paste this as your `README.md` right away ✅
