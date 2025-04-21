@@ -51,7 +51,7 @@ Some projects may require input files (e.g., sample assembly code). Refer to the
 
 ## Folder Structure
 
-Each project folder contains:
+Each project folder typically contains:
 
 - Source code files (e.g., `.c`, `.asm`)
 - Input files (if required, e.g., sample assembly code)
@@ -61,20 +61,20 @@ Each project folder contains:
 
 Contributions are welcome! To contribute:
 
-1. Fork the repository.
-2. Create a new branch:
+1. **Fork the repository**.
+2. **Create a new branch**:
    ```bash
    git checkout -b feature-branch
    ```
-3. Make your changes and commit:
+3. **Make your changes and commit**:
    ```bash
    git commit -m "Add feature"
    ```
-4. Push to the branch:
+4. **Push to the branch**:
    ```bash
    git push origin feature-branch
    ```
-5. Open a Pull Request.
+5. **Open a Pull Request**.
 
 ## Author
 
